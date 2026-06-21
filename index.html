@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know Jesus • İman Yolculuğu</title>
+    <meta name="description" content="İsa Mesih'i tanımak için interaktif iman sitesi. Quiz, Kutsal Kitap, Dua, İbadet, Kanıtlar ve Mini Oyun.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-icon">✝️</div>
+        <h1>Know Jesus</h1>
+        <p class="tagline">İsa Mesih ile daha derin bir yolculuk</p>
+        <button onclick="showSection('quiz')">Hemen Başla</button>
+    </header>
+
+    <nav class="nav">
+        <button onclick="showSection('quiz')" class="active">📝 Quiz</button>
+        <button onclick="showSection('bible')">📖 Kutsal Kitap</button>
+        <button onclick="showSection('prayers')">🙏 Dualar</button>
+        <button onclick="showSection('worship')">🎵 İbadet</button>
+        <button onclick="showSection('devotional')">🌅 Günlük</button>
+        <button onclick="showSection('evidence')">🔍 Kanıtlar</button>
+        <button onclick="showSection('game')">🎮 İman Koşusu</button>
+    </nav>
+
+    <!-- QUIZ -->
+    <div id="quiz" class="section active">
+        <div class="container">
+            <div id="start-screen" class="text-center">
+                <h2>İsa Mesih Bilgi Yarışması</h2>
+                <p>Bilginizi test edin ve geliştirin</p>
+                <button onclick="startGame()">12 Soruya Başla</button>
+            </div>
+
+            <div id="game-screen" style="display:none;">
+                <div class="score-bar">
+                    <div>Soru <span id="current-q">1</span>/12</div>
+                    <div>Puan: <span id="score">0</span></div>
+                </div>
+                <div class="progress-wrap">
+                    <div id="progress" class="progress-fill"></div>
+                </div>
+                <div id="question-text" class="question-text"></div>
+                <div id="verse-hint" class="verse-hint"></div>
+                <div id="options"></div>
+                <div id="feedback" class="feedback"></div>
+                <button id="next-btn" onclick="nextQuestion()" style="display:none;">Sonraki →</button>
+            </div>
+
+            <div id="results-screen" style="display:none;" class="text-center">
+                <div id="result-emoji" class="result-emoji">🙏</div>
+                <h2 id="result-title"></h2>
+                <p id="final-score" class="final-score"></p>
+                <p id="result-message" class="result-message"></p>
+                <button onclick="restartGame()">Tekrar Dene</button>
+                <button onclick="shareResults()" class="btn-success">Paylaş</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BIBLE -->
+    <div id="bible" class="section">
+        <div class="container">
+            <h2 class="section-title">📖 Kutsal Kitap - Örnek Ayetler</h2>
+            <div class="verse-card" onclick="alert('Daha fazla ayet için YouVersion Bible App önerilir!')">
+                <strong>Yuhanna 14:6</strong><br>İsa dedi: "Yol, gerçek ve yaşam Ben'im. Benim aracılığım olmadan Baba'ya kimse gelemez."
+            </div>
+            <div class="verse-card" onclick="alert('Daha fazla ayet için YouVersion Bible App önerilir!')">
+                <strong>Yuhanna 3:16</strong><br>Tanrı dünyayı o kadar çok sevdi ki, biricik Oğlu'nu verdi. O'na iman edenler yok olmasın, sonsuz yaşama kavuşsun.
+            </div>
+            <div class="verse-card" onclick="alert('Daha fazla ayet için YouVersion Bible App önerilir!')">
+                <strong>Filipililer 4:13</strong><br>Her şeye gücü bende veren Mesih sayesinde her şeye gücüm yeter.
+            </div>
+            <div class="verse-card" onclick="alert('Daha fazla ayet için YouVersion Bible App önerilir!')">
+                <strong>Romalılar 8:28</strong><br>Tanrı'yı sevenlere, O'nun amacına göre çağrılmış olanlara, her şeyin birlikte iyilik için işlediğini biliriz.
+            </div>
+            <p class="text-center" style="margin-top:30px;">
+                <button onclick="window.open('https://www.bible.com/', '_blank')">📱 Tam İncil Oku (YouVersion)</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- PRAYERS -->
+    <div id="prayers" class="section">
+        <div class="container">
+            <h2 class="section-title">🙏 Dualar</h2>
+            <div class="prayer-item" onclick="readPrayer(this, 'Göklerdeki Babamız, adın kutsal kılınsın. Egemenliğin gelsin. Gökte olduğu gibi yerde de senin istediğin olsun.')">
+                <strong>Rabbin Duası</strong><br>Göklerdeki Babamız, adın kutsal kılınsın...
+            </div>
+            <div class="prayer-item" onclick="readPrayer(this, 'Rab İsa, günahkarı olduğumu anlıyorum. Bağışlanmaya ihtiyacım var. Kalp kapımı sana açıyorum. Rab ve Kurtarıcım ol.')">
+                <strong>İsa\'ya Kabul Duası</strong><br>Rab İsa, günahlarımı bağışla...
+            </div>
+            <div class="prayer-item" onclick="readPrayer(this, 'Rab, seni seviyorum ve sana güveniyorum. Bugün yolumu aydınlat, kalbimi doldur ve senin iradenle yürümemi sağla. Amin.')">
+                <strong>Günlük Teslimiyet Duası</strong><br>Rab, seni seviyorum ve sana güveniyorum...
+            </div>
+            <h3 class="sub-title">📝 Kendi Dualarını Yaz</h3>
+            <textarea id="note-area" class="note-area" placeholder="Buraya kendi dualarını veya notlarını yaz..."></textarea>
+            <button onclick="saveNote()" style="margin-top:10px;">Notu Kaydet</button>
+            <p id="note-saved" class="note-saved"></p>
+        </div>
+    </div>
+
+    <!-- WORSHIP -->
+    <div id="worship" class="section">
+        <div class="container">
+            <h2 class="section-title">🎵 İbadet Şarkıları</h2>
+            <div class="playlist">
+                <div class="song-card">
+                    <iframe width="100%" height="120" src="https://www.youtube.com/embed/4a8SZjO7p5U" frameborder="0" allowfullscreen></iframe>
+                    <p class="song-title">Goodness of God — Bethel Music</p>
+                </div>
+                <div class="song-card">
+                    <iframe width="100%" height="120" src="https://www.youtube.com/embed/nQwf6o4qL8U" frameborder="0" allowfullscreen></iframe>
+                    <p class="song-title">Way Maker — Sinach</p>
+                </div>
+                <div class="song-card">
+                    <iframe width="100%" height="120" src="https://www.youtube.com/embed/r6E9kVq6J9Y" frameborder="0" allowfullscreen></iframe>
+                    <p class="song-title">What a Beautiful Name — Hillsong</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEVOTIONAL -->
+    <div id="devotional" class="section">
+        <div class="container">
+            <h2 class="section-title">🌅 Bugünkü Günlük</h2>
+            <blockquote class="daily-quote">
+                "Kendini inkâr et, çarmıhını al ve beni izle." — Matta 16:24
+            </blockquote>
+            <p class="daily-text">Bugün kendinizi bir an durdurun ve şunu sorun: Bugün İsa'yı takip etmek ne anlama geliyor? Küçük bir fedakarlık, bir nazik söz ya da sessiz bir dua bile imanın ifadesidir.</p>
+            <button onclick="alert('Duanız kabul edildi. Tanrı sizi seviyor ❤️')">Bu Günlük İçin Dua Et</button>
+        </div>
+    </div>
+
+    <!-- EVIDENCE -->
+    <div id="evidence" class="section">
+        <div class="container">
+            <h2 class="section-title">🔍 İsa'nın Gerçekliği - Videolar</h2>
+            <div class="video-grid">
+                <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=8MwQ1TIHX64','_blank')">
+                    <img src="https://img.youtube.com/vi/8MwQ1TIHX64/hqdefault.jpg" alt="Lee Strobel" class="video-thumb">
+                    <p class="video-label">📽 Tarihi Kanıtlar — Lee Strobel</p>
+                </div>
+                <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=ciF6cCE8Tt8','_blank')">
+                    <img src="https://img.youtube.com/vi/ciF6cCE8Tt8/hqdefault.jpg" alt="Diriliş Kanıtları" class="video-thumb">
+                    <p class="video-label">📽 Diriliş Kanıtları</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MINI GAME -->
+    <div id="game" class="section">
+        <div class="container" id="game-container">
+            <h2 class="section-title">🎮 İman Koşusu</h2>
+            <p class="text-center game-desc">Space / Yukarı Ok ile Zıpla &bull; Engellerden kaç! İman sembollerini topla ✝️</p>
+            <div class="game-info">
+                Skor: <span id="game-score">0</span> &nbsp;|&nbsp; En Yüksek: <span id="high-score">0</span>
+            </div>
+            <canvas id="gameCanvas" width="800" height="400"></canvas>
+            <div class="game-btns">
+                <button onclick="startMiniGame()">▶ Başlat / Yeniden Başla</button>
+                <button onclick="endMiniGame()" class="btn-danger">■ Oyunu Bitir</button>
+            </div>
+            <p class="game-tip">Daha uzun koş, daha fazla puan kazan!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ to help you know Jesus &bull; Matta 7:7</p>
+    </footer>
+
+    <button class="toggle-btn" onclick="toggleDarkMode()" title="Karanlık/Aydınlık Mod">🌙</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
